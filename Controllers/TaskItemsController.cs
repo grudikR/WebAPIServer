@@ -32,6 +32,17 @@ namespace WebAPIServer.Controllers
             return await _context.TaskItems.ToListAsync();
         }
 
+        // GET: api/TaskItems/bycategory/2
+        [HttpGet("bycategory/{categoryid}")]
+        public async Task<ActionResult<IEnumerable<TaskItem>>> GetTaskItems(int categoryid)
+        {
+            if (_context.TaskItems == null)
+            {
+                return NotFound();
+            }
+            return await _context.TaskItems.Where(c => c.CategoryID == categoryid).ToListAsync();
+        }
+
         // GET: api/TaskItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TaskItem>> GetTaskItem(int id)
@@ -120,5 +131,7 @@ namespace WebAPIServer.Controllers
         {
             return (_context.TaskItems?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+
     }
 }

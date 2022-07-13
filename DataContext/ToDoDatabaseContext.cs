@@ -11,7 +11,8 @@ namespace WebAPIServer.DataContext
 
         public ToDoDatabaseContext(DbContextOptions<ToDoDatabaseContext> options):base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
     }
 }
